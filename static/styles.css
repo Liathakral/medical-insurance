@@ -1,0 +1,139 @@
+/* styles.css */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #e8e8f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 40px;
+    color: #333;
+}
+
+.container {
+    display: flex;
+    width: 90%;
+    max-width: 1000px;
+    background-color: #f8f5f9;
+    border-radius: 15px;
+    overflow: scroll;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar {
+    width: 60%;
+    background-image: url('medical2.jpg'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    color: #f8f5f9;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    align-items: center;
+   
+}
+
+
+
+.steps {
+    list-style: none;
+    width: 100%;
+    margin-bottom: auto;
+}
+
+.steps li {
+    margin: 15px 0;
+    font-size: 18px;
+    color: #c0c0d2;
+}
+
+.steps .active {
+    color: #f8f5f9;
+    font-weight: bold;
+}
+
+.image-placeholder {
+    width: 100%;
+    height: 150px;
+    background-color: #3d3d6b;
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+.save-text {
+    font-size: 14px;
+    color: #a9a9c4;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.form-section {
+    width: 70%;
+    padding: 40px;
+}
+
+.form-section h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.back-button, .submit-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.back-button {
+    background-color: #ccc;
+    color: #333;
+}
+
+.submit-button {
+    background-color: #6c63ff;
+    color: #fff;
+}
+
+.submit-button:hover {
+    background-color: #5754d3;
+}
+
+.back-button:hover {
+    background-color: #aaa;
+}

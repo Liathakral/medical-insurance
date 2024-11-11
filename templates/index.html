@@ -9,12 +9,12 @@
 <body>
     <div class="container">
         <div class="sidebar">
-          
+          <img  src="../static/insurance.jpg" alt="">
         </div>
         
         <div class="form-section">
             <h1>Medical Insurance Prediction</h1>
-            <form method="POST">
+            <form action="/predict" method="post">
                 <div class="form-group">
                     <label for="age">Age</label>
                     <input type="number" id="age" name="age" required placeholder="Enter your age">
@@ -60,9 +60,6 @@
                     <button type="button" class="back-button">Back</button>
                     <button type="submit" class="submit-button">Predict Insurance Charges</button>
                 </div>
-                {% if prediction %}
-                <h2>Predicted Insurance Charges: ${{ prediction | round(2) }}</h2>
-            {% endif %}
             </form>
         </div>
     </div>

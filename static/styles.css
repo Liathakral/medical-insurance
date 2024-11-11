@@ -8,7 +8,6 @@
 }
 
 body {
-    background-color: #e8e8f2;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,20 +23,17 @@ body {
     background-color: #f8f5f9;
     border-radius: 15px;
     overflow: scroll;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar {
     width: 60%;
-    background-image: url('medical2.jpg'); /* Replace with your image path */
-    background-size: cover;
-    background-position: center;
-    color: #f8f5f9;
-    display: flex;
-    overflow: hidden;
-    flex-direction: column;
-    align-items: center;
-   
+  
+     background-color: white;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   overflow: hidden;
 }
 
 
@@ -136,4 +132,17 @@ body {
 
 .back-button:hover {
     background-color: #aaa;
+}
+.result-container{
+    display: flex;
+    flex-direction: column;
+    justify-content:  center;
+align-items: center;
+padding: 30px;
+ 
+    background-color: #f8f5f9;
+    border-radius: 15px;
+    overflow: scroll;
+    gap: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }

@@ -1,43 +1,56 @@
-
-
 from flask import Flask, render_template, request
 import pickle
 import numpy as np
-import pandas as pd
-
-# Load your model (assuming you've saved it as 'model.pkl' in your Jupyter Notebook)
-with open('insurance_model.pkl', 'rb') as f:
-    model = pickle.load(f)
 
 app = Flask(__name__)
 
-# Route for the home page with the form
+MODEL_PATHS = {
+    "LinearRegression": "insurance_model_LinearRegression.pkl",
+    "RandomForest": "insurance_model_rf.pkl",
+    "SVR": "insurance_model_svr.pkl"
+}
+
+def load_model(model_name):
+    model_path = MODEL_PATHS.get(model_name)
+    if model_path:
+        with open(model_path, 'rb') as f:
+            loaded_data = pickle.load(f)
+            if model_name in ["SVR", "RandomForest"] and isinstance(loaded_data, dict):
+                return loaded_data['model'], loaded_data['scaler_Y']
+            else:
+                return loaded_data, None
+    return None, None
+
 @app.route('/')
 def index():
     return render_template('index.html')
 
-# Route for handling form submissions and predictions
 @app.route('/predict', methods=['POST'])
 def predict():
-    # Retrieve form data
+    model_name = request.form['model']
     age = int(request.form['age'])
-    sex = 1 if request.form['sex'] == 'male' else 0
+    sex = int(request.form['sex'])
     bmi = float(request.form['bmi'])
     children = int(request.form['children'])
-    smoker = 1 if request.form['smoker'] == 'yes' else 0
-    region = request.form['region']
+    smoker = int(request.form['smoker'])
+    region = int(request.form['region'])
     
-    # Convert region into numerical value
-    region_dict = {'northeast': 0, 'northwest': 1, 'southeast': 2, 'southwest': 3}
-    region = region_dict.get(region.lower(), -1)
-    
-    # Prepare the feature array for prediction
     features = np.array([[age, sex, bmi, children, smoker, region]])
     
-    # Predict insurance charges
-    prediction = model.predict(features)
-    
-    return render_template('result.html', prediction=round(prediction[0], 2))
+    model, scaler_Y = load_model(model_name)
+    if model is not None:
+        if scaler_Y:  
+            prediction = model.predict(features)
+            prediction = scaler_Y.inverse_transform(prediction.reshape(-1, 1))  
+            prediction_value = prediction[0][0]  
+        else:
+            prediction = model.predict(features)  
+            prediction_value = prediction[0]  
+
+        return render_template('result.html', prediction=round(prediction_value, 2))
+    else:
+        return "Model not found", 400
+
 
 if __name__ == '__main__':
     app.run(debug=True)

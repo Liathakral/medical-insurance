@@ -9,12 +9,21 @@
 <body>
     <div class="container">
         <div class="sidebar">
-          <img  src="../static/insurance.jpg" alt="">
+            <img src="../static/insurance.jpg" alt="">
         </div>
         
         <div class="form-section">
             <h1>Medical Insurance Prediction</h1>
             <form action="/predict" method="post">
+                <div class="form-group">
+                    <label for="model">Choose Model</label>
+                    <select id="model" name="model" required>
+                        <option value="LinearRegression">Linear Regression</option>
+                        <option value="RandomForest">Random Forest</option>
+                        <option value="SVR">Support Vector Regression (SVR)</option>
+                    </select>
+                </div>
+                
                 <div class="form-group">
                     <label for="age">Age</label>
                     <input type="number" id="age" name="age" required placeholder="Enter your age">
